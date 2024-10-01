@@ -1,17 +1,18 @@
-Nama: Super-Linter
+name: Super-Linter
 
-di atas: dorong
+on: push
 
-Pekerjaan:
-serat super:
-Nama: Basis kode serat
-berjalan: ubuntu-terbaru
-Langkah:
-  -Nama: Kode checkout
-   Menggunakan: tindakan/checkout@v2
+jobs:
+  super-linter:
+    name: Super Linter Codebase
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  -Nama: Jalankan Super-Linter
-   Menggunakan: github/super-linter@v4
-   lingkungan:
-     DEFAULT_BRANCH: utama
-     GITHUB_TOKEN: ${{ rahasia. GITHUB_TOKEN}}
+      - name: Run Super-Linter
+        uses: github/super-linter@v4
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
